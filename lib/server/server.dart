@@ -6,7 +6,9 @@ import 'package:shelf/shelf_io.dart' as shelf_io;
 import 'package:shelf_router/shelf_router.dart' as shelf_router;
 import 'package:shelf_static/shelf_static.dart' as shelf_static;
 
-String? myEmail = "andresf9806@gmail.com", myPassword = "Chan.61522_", myName = "Andrés Berdugo";
+String? myEmail = "andresf9806@gmail.com",
+    myPassword = "Chan.61522_",
+    myName = "Andrés Berdugo";
 
 Future<Response?> _getUserInformation(Request request, String userEmail) async {
   try {

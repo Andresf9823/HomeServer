@@ -9,13 +9,4 @@ String path = "/user/getInformation/andresf9806@gmail.com";
 void main() async {
   final server = app_server.Server('localhost', 1818);
   server.launch();
-
-  final userUrlParams =
-      api_client.UrlParams(ip, port, path, api_client.TypeOfSecurity.http);
-      
-  final api = api_client.Api(userUrlParams);
-  var user = User.createFromJson(await api.getRequest());
-  print(user.email);
-  print(user.password);
-  print(user.name);
 }
