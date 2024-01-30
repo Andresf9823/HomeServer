@@ -1,6 +1,4 @@
-import 'package:dispenser_server/api/api_client.dart' as api_client;
-import 'package:dispenser_server/loggin/users.dart';
-import 'package:dispenser_server/server/server.dart' as app_server;
+import 'package:dispenser_server/server/web_server.dart' as app_server;
 
 String ip = "localhost";
 int port = 1818;
