@@ -104,8 +104,8 @@ Future<Response?> _createUser(Request request) async {
   }
 }
 
-class Server {
-  Server(this.ipAddress, this.port);
+class WebServer {
+  WebServer({this.ipAddress = 'localhost', required this.port});
   String ipAddress;
   int port;
   late HttpServer server;
