@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:dispenser_server/api/network_configuration.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
 import 'package:shelf_router/shelf_router.dart' as shelf_router;
@@ -104,10 +105,10 @@ Future<Response?> _createUser(Request request) async {
   }
 }
 
-class WebServer {
-  WebServer({this.ipAddress = 'localhost', required this.port});
-  String ipAddress;
-  int port;
+class WebServer extends Network {
+  WebServer({String ipService = 'localhost', required int port})
+      : super(ip: ipService, port: port);
+
   late HttpServer server;
 
   final _staticHandler =
@@ -129,7 +130,7 @@ class WebServer {
       print('Serving at http://${server.address.host}:${server.port}');
       return server;
     } catch (e) {
-      print('Cannot init server at $ipAddress:$port');
+      print('Cannot init server at $ip:$port');
       return null;
     }
   }

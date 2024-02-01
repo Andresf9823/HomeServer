@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:dispenser_server/api/network_configuration.dart';
 import 'package:http/http.dart' as http;
 
 enum TypeOfSecurity { http, https }
@@ -12,11 +13,18 @@ class UrlParams {
   UrlParams(this.ip, this.port, this.path, this.security);
 }
 
-class Api {
+class Api extends Network {
+  late String path;
   late String url;
+  late TypeOfSecurity security;
 
-  Api(UrlParams param) {
-    switch (param.security) {
+  Api({
+    required String hostTarget,
+    int portTarget = 0,
+    required String path,
+    TypeOfSecurity security = TypeOfSecurity.http,
+  }) : super(ip: hostTarget, port: portTarget) {
+    switch (security) {
       case TypeOfSecurity.http:
         url = "http://";
         break;
@@ -29,7 +37,7 @@ class Api {
         url = "http://";
         break;
     }
-    url += "${param.ip}:${param.port}${param.path}";
+    url += "$ip${port == 0 ? '/' : ':+{port.toString()}'}$path";
   }
 
   Future<Map<String, dynamic>> getRequest() async {
